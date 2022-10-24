@@ -1,7 +1,7 @@
-package tf.MapReduce.B.job1;
+package tf.MapReduce.A.job3;
 
 import tf.CustomWritables.UnigramFreqWritable;
-import tf.DriverB;
+import tf.DriverA;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.Counter;
 
-public class JobOneB {
+public class JobThreeA {
     // unique to each mapper
 	public static class FreqMapper extends Mapper<Object, BytesWritable, Text, IntWritable> {
 
@@ -45,20 +45,20 @@ public class JobOneB {
         }
     }
 
-    public static int run(String TF_IDF_Dir, String inputDir, String outputDir) throws Exception {
+    public static int run(String inputDir, String outputDir) {
         Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf, "Job 1B");
+        Job job = Job.getInstance(conf, "Job 3A");
 
 		job.setInputFormatClass(NLineInputFormat.class);
-		job.setJarByClass(DriverB.class);
+		job.setJarByClass(DriverA.class);
 
-		job.setMapperClass(JobOneB.FreqMapper.class);
+		job.setMapperClass(JobThreeA.FreqMapper.class);
         job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 
-		job.setCombinerClass(JobOneB.FreqCombiner.class);
+		job.setCombinerClass(JobThreeA.FreqCombiner.class);
 
-		job.setReducerClass(JobOneB.FreqReducer.class);
+		job.setReducerClass(JobThreeA.FreqReducer.class);
         job.setOutputKeyClass(IntWritable.class);
 		job.setOutputValueClass(UnigramFreqWritable.class);
 
