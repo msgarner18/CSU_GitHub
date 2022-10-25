@@ -3,7 +3,7 @@
 # rm -rf *.class
 
 ROOT=tf
-for LETTER in A B
+for LETTER in A #B
 do
     $HADOOP_HOME/bin/hadoop com.sun.tools.javac.Main $ROOT/Driver$LETTER.java $ROOT/InputClasses/*.java $ROOT/CustomWritables/*.java $ROOT/MapReduce/$LETTER/*/*.java
     if [[ $? -eq 0 ]]; then

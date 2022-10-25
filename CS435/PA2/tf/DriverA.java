@@ -30,17 +30,23 @@ import org.apache.hadoop.conf.Configured;
 
 import org.apache.hadoop.mapreduce.Counter;
 
+// import java.util.ArrayList;
+// import java.util.StringTokenizer;
+
 public class DriverA extends Configured implements Tool{
     public static enum DocumentsCount {
         NUMDOCS
     }
 
-	public static int runJob(String inputDir, String outputDir) throws Exception {
-		Counter docCounter = JobOneA.run(inputDir, outputDir);
-        JobTwoA.run(docCounter, inputDir, outputDir);
-        return JobThreeA.run(inputDir, outputDir);
+	public static int runJob(String inputDir, String TF_IDFDir) throws Exception {
+		String freqDir = "/PA2/IOFolders/outputs/freq";
+		String TFDir = "/PA2/IOFolders/outputs/TF";
 
-		// return 0;
+		Counter docCounter = JobOneA.run(inputDir, freqDir);
+        JobTwoA.run(freqDir, TFDir);
+        // return JobThreeA.run(docCounter, TFDir, TF_IDFDir);
+		return 0;
+
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -53,6 +59,7 @@ public class DriverA extends Configured implements Tool{
 
 	@Override
    	public int run(String[] args) throws Exception {
+		
         if(runJob(args[0], args[1]) != 0)
             return 1; //error
 		return 0;	 //success

@@ -35,16 +35,16 @@ do
   OUTPUTS=$IOFOLDER/outputs
 
   # remove output
+  echo "removing output..."
   $HADOOP_HOME/bin/hadoop fs -mkdir $OUTPUTS
   $HADOOP_HOME/bin/hadoop fs -rm -r $OUTPUTS/*
 
   # Run in yarn mode
   if [ "$LETTER" = "A" ]; then
-    if [ "$AFLAG" = true ]; then
+    if [ "$A_FLAG" = true ]; then
       echo "Running ProfileA.jar..."
       $HADOOP_HOME/bin/hadoop jar profileA.jar tf/DriverA -D mapreduce.framework.name=yarn $IOFOLDER/input $OUTPUTS/output
     fi
-  fi
   else
     if [ "$B_FLAG" = true ]; then
       echo "Running ProfileB.jar..."
@@ -53,7 +53,8 @@ do
   fi
 
   # update output
-  LOCALROOT=~/CS435
+  echo "updating output..."
+  LOCALROOT=~/CSU_GitHub/CS435
 
   mkdir $LOCALROOT$IOFOLDER
   mkdir $LOCALROOT$OUTPUTS
@@ -65,6 +66,9 @@ do
   done
   if [ "$B_FLAG" != true ]; then
     cp -r $LOCALROOT$OUTPUTS/TF_IDF $LOCALROOT$IOFOLDER
+  fi
+  if [ "$B_FLAG" != "$A_FLAG" ]; then
+    break
   fi
 
 done

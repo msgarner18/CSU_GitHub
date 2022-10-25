@@ -1,6 +1,7 @@
 package tf.MapReduce.A.job3;
 
 import tf.CustomWritables.UnigramFreqWritable;
+import tf.CustomWritables.UnigramTF_IDFWritable;
 import tf.DriverA;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import org.apache.hadoop.mapreduce.Counter;
 
 public class JobThreeA {
     // unique to each mapper
-	public static class FreqMapper extends Mapper<Object, BytesWritable, Text, IntWritable> {
+	public static class TF_IDFMapper extends Mapper<Object, BytesWritable, Text, IntWritable> {
 
         // called for all mappers
         public void map(Object key, BytesWritable bWriteable, Context context) throws IOException, InterruptedException {
@@ -29,7 +30,7 @@ public class JobThreeA {
         }
     }
 
-    public static class FreqCombiner extends Reducer<Text, IntWritable, Text, IntWritable> {
+    public static class TF_IDFCombiner extends Reducer<Text, IntWritable, Text, IntWritable> {
 
         @Override
         public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
@@ -37,7 +38,7 @@ public class JobThreeA {
         }
     }
 
-    public static class FreqReducer extends Reducer<Text, IntWritable, IntWritable, UnigramFreqWritable> {
+    public static class TF_IDFReducer extends Reducer<Text, IntWritable, IntWritable, UnigramFreqWritable> {
 
         @Override
         public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
@@ -45,26 +46,28 @@ public class JobThreeA {
         }
     }
 
-    public static int run(String inputDir, String outputDir) {
+    public static void run(Counter counter, String inputDir, String outputDir) throws Exception {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "Job 3A");
+
+        job.getConfiguration().setLong(counter.getDisplayName(), counter.getValue());
 
 		job.setInputFormatClass(NLineInputFormat.class);
 		job.setJarByClass(DriverA.class);
 
-		job.setMapperClass(JobThreeA.FreqMapper.class);
-        job.setOutputKeyClass(Text.class);
-		job.setOutputValueClass(IntWritable.class);
+		job.setMapperClass(JobThreeA.TF_IDFMapper.class);
+        job.setMapOutputKeyClass(IntWritable.class);
+		job.setMapOutputValueClass(UnigramFreqWritable.class);
 
-		job.setCombinerClass(JobThreeA.FreqCombiner.class);
+		// job.setCombinerClass(JobThreeA.FreqCombiner.class);
 
-		job.setReducerClass(JobThreeA.FreqReducer.class);
+		job.setReducerClass(JobThreeA.TF_IDFReducer.class);
         job.setOutputKeyClass(IntWritable.class);
-		job.setOutputValueClass(UnigramFreqWritable.class);
+		job.setOutputValueClass(UnigramTF_IDFWritable.class);
 
 		FileInputFormat.addInputPath(job, new Path(inputDir));
 		FileOutputFormat.setOutputPath(job, new Path(outputDir));
 
-        return job.waitForCompletion(true) ? 0 : 1;
+        job.waitForCompletion(true);
     }
 }
