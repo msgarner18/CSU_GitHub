@@ -39,19 +39,29 @@ do
   IOFOLDER=/PA2/IOFolders
   OUTPUTS=$IOFOLDER/outputs
 
-  # remove output
   echo "removing output..."
   $HADOOP_HOME/bin/hadoop fs -mkdir $OUTPUTS
-  $HADOOP_HOME/bin/hadoop fs -rm -r $OUTPUTS/*
 
   # Run in yarn mode
   if [ "$LETTER" = "A" ]; then
     if [ "$A_FLAG" = true ]; then
+      echo "removing A outputs..."
+      for F in freq TF TF_IDF
+      do
+        $HADOOP_HOME/bin/hadoop fs -rm -r $OUTPUTS/$F
+      done
+
       echo "Running ProfileA.jar..."
       $HADOOP_HOME/bin/hadoop jar profileA.jar tf/DriverA -D mapreduce.framework.name=yarn $IOFOLDER/input $OUTPUTS/TF_IDF
     fi
   else
     if [ "$B_FLAG" = true ]; then
+      echo "removing B outputs..."
+      for F in output
+      do
+        $HADOOP_HOME/bin/hadoop fs -rm -r $OUTPUTS/$F
+      done
+
       echo "Running ProfileB.jar..."
       $HADOOP_HOME/bin/hadoop jar profileB.jar tf/DriverB -D mapreduce.framework.name=yarn $IOFOLDER/TF_IDF $IOFOLDER/input $OUTPUTS/output
     fi

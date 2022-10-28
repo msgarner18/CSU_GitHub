@@ -70,6 +70,32 @@ public class JobOneB {
         private Map<Text, DoubleWritable> TF_IDFs; 
         private Map<IntWritable, ArrayList<String>> sentences;
 
+        private void addTF_IDF(IntWritable docId, Text content) {
+            if(content.toString().charAt(0) == 'A') {
+                String rawText = new String(content.toString().substring(2));
+                StringTokenizer itr = new StringTokenizer(rawText);
+
+                Text unigram = new Text(itr.nextToken());
+                double TF_IDF = Double.parseDouble(itr.nextToken());
+
+                TF_IDFs.put(new Text(docId.get()+unigram.toString()), new DoubleWritable(TF_IDF));
+                context.write(docId, new Text("A "+docId.get()+unigram.toString()));
+            }
+        }
+
+        private void addSentence(IntWritable docId, Text content) {
+            if(content.toString().charAt(0) == 'B') {
+                String sentence = content.toString().substring(2);
+                ArrayList<String> list = sentences.get(docId);
+                if(list == null)
+                    list = new ArrayList<String>();
+                list.add(new String(sentence));
+
+                sentences.put(docId, list);
+                context.write(docId, new Text("B "+new String(sentence)));
+            }
+        }
+
 		@Override
 		protected void setup(Context context) {
             TF_IDFs = new HashMap<Text, DoubleWritable>(); 
@@ -80,33 +106,15 @@ public class JobOneB {
 		public void reduce(IntWritable docIdKey, Iterable<Text> contentItr, Context context) throws IOException, InterruptedException {
 			for(Text content : contentItr) {
                 IntWritable docId = new IntWritable(docIdKey.get());
-                if(content.toString().charAt(0) == 'A') {
-                    String rawText = new String(content.toString().substring(2));
-                    StringTokenizer itr = new StringTokenizer(rawText);
-
-                    Text unigram = new Text(itr.nextToken());
-                    double TF_IDF = Double.parseDouble(itr.nextToken());
-
-                    TF_IDFs.put(new Text(docId.get()+unigram.toString()), new DoubleWritable(TF_IDF));
-                    // context.write(docId, new Text("A "+docId.get()+unigram.toString()));
-                }
-                if(content.toString().charAt(0) == 'B') {
-                    String sentence = content.toString().substring(2);
-                    ArrayList<String> list = sentences.get(docId);
-                    if(list == null)
-                        list = new ArrayList<String>();
-                    list.add(new String(sentence));
-
-                    sentences.put(docId, list);
-                    context.write(docId, new Text("B "+new String(sentence)));
-                }
+                addTF_IDF(docId, content);
+                addSentence(docId, content);
 			}
 		}
 
         @Override
 		protected void cleanup(Context context) throws IOException, InterruptedException {
             // loop through each docId
-            SummaryCalculator calc = new SummaryCalculator(TF_IDFs, sentences);
+            // SummaryCalculator calc = new SummaryCalculator(TF_IDFs, sentences);
             
             // for(IntWritable docId : sentences.keySet()){
             //     for(String sentence : calc.getBestSentences(docId)) {
