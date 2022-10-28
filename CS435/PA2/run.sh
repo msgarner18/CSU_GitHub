@@ -27,6 +27,11 @@ shift "$(($OPTIND -1))"
 
 for LETTER in "A" "B"
 do
+  if [ $A_FLAG != true ]; then  
+    if [ "$LETTER" == "A" ]; then
+      continue
+    fi
+  fi
   if [ $I_FLAG = true ]; then 
     ./refreshInput.sh
   fi
@@ -67,7 +72,7 @@ do
   if [ "$B_FLAG" != true ]; then
     cp -r $LOCALROOT$OUTPUTS/TF_IDF $LOCALROOT$IOFOLDER
   fi
-  if [ "$B_FLAG" != "$A_FLAG" ]; then
+  if [ "$B_FLAG" != true ]; then
     break
   fi
 
