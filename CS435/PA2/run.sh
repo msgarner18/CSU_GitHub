@@ -43,7 +43,7 @@ do
   if [ "$LETTER" = "A" ]; then
     if [ "$A_FLAG" = true ]; then
       echo "Running ProfileA.jar..."
-      $HADOOP_HOME/bin/hadoop jar profileA.jar tf/DriverA -D mapreduce.framework.name=yarn $IOFOLDER/input $OUTPUTS/output
+      $HADOOP_HOME/bin/hadoop jar profileA.jar tf/DriverA -D mapreduce.framework.name=yarn $IOFOLDER/input $OUTPUTS/TF_IDF
     fi
   else
     if [ "$B_FLAG" = true ]; then

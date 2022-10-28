@@ -38,14 +38,14 @@ public class DriverA extends Configured implements Tool{
         NUMDOCS
     }
 
-	public static int runJob(String inputDir, String TF_IDFDir) throws Exception {
+	public static int runJob(String inputDir, String TF_IDF) throws Exception {
 		String freqDir = "/PA2/IOFolders/outputs/freq";
 		String TFDir = "/PA2/IOFolders/outputs/TF";
 
 		Counter docCounter = JobOneA.run(inputDir, freqDir);
         JobTwoA.run(freqDir, TFDir);
-        // return JobThreeA.run(docCounter, TFDir, TF_IDFDir);
-		return 0;
+        return JobThreeA.run(docCounter, TFDir, TF_IDFDir);
+		// return 0;
 
 	}
 

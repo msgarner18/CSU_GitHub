@@ -4,51 +4,52 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import org.apache.hadoop.io.DoubleWritable;
-import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.DoubleWritable;
 
 public class DocIdTFWritable implements Writable {
-	private Text unigram;
-	private DoubleWritable TF;
-	
-	public DocIdTFWritable(Text unigram, DoubleWritable TF){
-		this.unigram = new Text(unigram.toString());
-        this.TF = new DoubleWritable(TF.get());
-	}
+    private IntWritable docId;
+    private DoubleWritable TF_value;
+   
+    public DocIdTFWritable() {
+        this.docId = new IntWritable();
+        this.TF_value = new DoubleWritable();
+    }
 
-	public DocIdTFWritable() {
-		this.unigram = new Text();
-        this.TF = new DoubleWritable();
-	}
+    public DocIdTFWritable(IntWritable docId, DoubleWritable TF_value) {
+        this.docId = docId;
+        this.TF_value = TF_value;
+    }
 
-	public Text getUnigram() {
-		return unigram;
-	}
+    public IntWritable getDocId() {
+        return docId;
+    }
 
-	public DoubleWritable getTF() {
-		return TF;
-	}
+    public DoubleWritable getTF() {
+        return TF_value;
+    }
 
-	@Override
+    @Override
 	public void readFields(DataInput arg0) throws IOException {
-		unigram.readFields(arg0);
-		TF.readFields(arg0);
+        docId.readFields(arg0);
+		TF_value.readFields(arg0);
 	}
 
 	@Override
 	public void write(DataOutput arg0) throws IOException {
-		unigram.write(arg0);
-		TF.write(arg0);
+		docId.write(arg0);
+		TF_value.write(arg0);
 	}
 
 	@Override
 	public String toString(){
-		return unigram.toString() + "\t" + TF.get();
+        return docId.toString() + "\t" + TF_value.get();
 	}
 
     @Override
     public int hashCode() {
-      return unigram.hashCode();
+      return docId.hashCode();
     }
 }
