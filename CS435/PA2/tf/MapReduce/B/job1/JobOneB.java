@@ -18,8 +18,9 @@ import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.ArrayList;
 
 import java.util.StringTokenizer;
@@ -79,7 +80,6 @@ public class JobOneB {
                 double TF_IDF = Double.parseDouble(itr.nextToken());
 
                 TF_IDFs.put(new Text(docId.get()+unigram.toString()), new DoubleWritable(TF_IDF));
-                context.write(docId, new Text("A "+docId.get()+unigram.toString()));
             }
         }
 
@@ -92,14 +92,13 @@ public class JobOneB {
                 list.add(new String(sentence));
 
                 sentences.put(docId, list);
-                context.write(docId, new Text("B "+new String(sentence)));
             }
         }
 
 		@Override
 		protected void setup(Context context) {
-            TF_IDFs = new HashMap<Text, DoubleWritable>(); 
-            sentences = new HashMap<IntWritable, ArrayList<String>>();
+            TF_IDFs = new TreeMap<Text, DoubleWritable>(); 
+            sentences = new TreeMap<IntWritable, ArrayList<String>>();
 		}
 
         @Override
@@ -114,75 +113,16 @@ public class JobOneB {
         @Override
 		protected void cleanup(Context context) throws IOException, InterruptedException {
             // loop through each docId
-            // SummaryCalculator calc = new SummaryCalculator(TF_IDFs, sentences);
+            SummaryCalculator calc = new SummaryCalculator(TF_IDFs, sentences);
             
-            // for(IntWritable docId : sentences.keySet()){
-            //     for(String sentence : calc.getBestSentences(docId)) {
-            //         context.write(new IntWritable(docId.get()), new Text(sentence));
-            //     }  
-            // }
-            // for(Text key : TF_IDFs.keySet()) {
-            //     context.write(new IntWritable(1), new Text(TF_IDFs.get(key).get()+""));
-            // }
-            // for(IntWritable docId : sentences.keySet()){
-            //     for(String sentence : sentences.get(docId)) {
-            //         context.write(new IntWritable(docId.get()), new Text(sentence));
-            //     }  
-            // }
+            for(IntWritable docId : sentences.keySet()){
+                Set<String> best_sentences = calc.getBestSentences(docId);
+                for(String sentence : sentences.get(docId)) {
+                    if( best_sentences.contains(sentence) )
+                        context.write(new IntWritable(docId.get()), new Text(sentence));
+                }  
+            }
         }
-            //     // retrieve list of sentences associated with this docId
-            //     ArrayList<String> list = sentences.get(docId);
-
-            //     // Store top 5 sentence TF_IDFs for this docId
-            //     Map<String, Double> best_sentence_TF_IDFs= new HashMap<String, Double>();
-            //     for(String sentence : list) {
-            //         // calc sentence TF_IDF
-            //         String rawText = new String(sentence);
-            //         StringTokenizer itr = new StringTokenizer(rawText);
-
-            //         double[] best_TF_IDFs = {0.0, 0.0, 0.0, 0.0, 0.0};
-            //         while(itr.hasMoreTokens()) {
-            //             String unigram = itr.nextToken();
-            //             Text key = new Text(docId.get()+unigram);
-            //             double cur_TF_IDF = TF_IDFs.get(key).get();
-            //             // add TF_IDF to best_TF_IDFs list in the proper place
-            //             for(int i = 0; i < 5; i++) {
-            //                 double TF_IDF = best_TF_IDFs[i];
-            //                 if(cur_TF_IDF > TF_IDF) {
-            //                     if(i > 0) {
-            //                         best_TF_IDFs[i-1] = best_TF_IDFs[i];
-            //                     }
-            //                     best_TF_IDFs[i] = cur_TF_IDF;
-            //                     continue;
-            //                 }
-            //                 break;
-            //             }
-            //         }
-            //         // sum top 5 TF_IDFs to make a sentence score
-            //         double sentenceScore = 0;
-            //         for(double TF_IDF : best_TF_IDFs) {
-            //             sentenceScore += TF_IDF;
-            //         }
-
-            //         // add sentence to best_sentence_TF_IDFs list in the proper place
-            //         best_sentence_TF_IDFs.put(sentence, sentenceScore);
-            //         if(best_sentence_TF_IDFs.size() > 5) {
-            //             double min_TF_IDF = 0.0;
-            //             String min_sentence = sentence;
-            //             for(String s : best_sentence_TF_IDFs.keySet()) {
-            //                 if(best_sentence_TF_IDFs.get(s).doubleValue() < min_TF_IDF) {
-            //                     min_TF_IDF = best_sentence_TF_IDFs.get(s).doubleValue();
-            //                     min_sentence = s;
-            //                 }
-            //             }
-            //             best_sentence_TF_IDFs.remove(min_sentence);
-            //         }
-            //     }
-            //     for(String sentence : best_sentence_TF_IDFs.keySet()) {
-            //         context.write(new IntWritable(docId.get()), new Text(sentence));
-            //     }       
-            // }
-		// }
 	}
 
 	public static int run(String TF_IDFInput, String docInput, String outputDir) throws Exception {

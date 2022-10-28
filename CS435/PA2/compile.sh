@@ -11,6 +11,7 @@ do
         jar cf profile$LETTER.jar $ROOT/Driver$LETTER*.class $ROOT/InputClasses/*.class $ROOT/CustomWritables/*.class $ROOT/MapReduce/$LETTER/*/*.class
         # jar cvf $PROFILE.jar -C $PROFILE .
     fi
+    
 done
 
 # $HADOOP_HOME/bin/hadoop com.sun.tools.javac.Main *.java

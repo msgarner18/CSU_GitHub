@@ -5,7 +5,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Set;
@@ -22,7 +22,7 @@ public class SummaryCalculator {
     public Set<String> getBestSentences(IntWritable docId) {
         ArrayList<String> sentenceList = sentences.get(docId);
         
-        Map<String, Double> best_sentence_TF_IDFs = new HashMap<String, Double>();
+        Map<String, Double> best_sentence_TF_IDFs = new TreeMap<String, Double>();
         for( String sentence : sentenceList) {
             String sentenceCopy = new String(sentence);
             double[] best_unigram_TF_IDFs = getBestUnigramTF_IDFs(docId, sentenceCopy);
@@ -34,7 +34,7 @@ public class SummaryCalculator {
         return best_sentence_TF_IDFs.keySet();
     }
 
-    private double[] getBestUnigramTF_IDFs(IntWritable docId, String sentence) {
+    public double[] getBestUnigramTF_IDFs(IntWritable docId, String sentence) {
         double[] best_unigram_TF_IDFs = {0.0, 0.0, 0.0, 0.0, 0.0};
        
         String rawText = new String(sentence);
@@ -67,7 +67,7 @@ public class SummaryCalculator {
         }
     }
 
-    private double calculateSentenceScore(double[] best_unigram_TF_IDFs) {
+    public double calculateSentenceScore(double[] best_unigram_TF_IDFs) {
         double sentenceScore = 0;
         for(double TF_IDF : best_unigram_TF_IDFs) {
             sentenceScore += TF_IDF;
