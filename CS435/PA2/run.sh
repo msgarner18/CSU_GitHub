@@ -25,8 +25,10 @@ while getopts 'iab' OPTION; do
 done
 shift "$(($OPTIND -1))"
 
+# run profileA.jar and profileB.jar
 for LETTER in "A" "B"
 do
+  # if A is not set, skip ahead to B
   if [ $A_FLAG != true ]; then  
     if [ "$LETTER" == "A" ]; then
       continue
