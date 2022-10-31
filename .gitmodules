@@ -7,3 +7,6 @@
 [submodule "g08"]
 	path = g08
 	url = https://github.com/CSU-CS-414-Fall-2022/g08
+[submodule "CS414/g08"]
+	path = CS414/g08
+	url = https://github.com/CSU-CS-414-Fall-2022/g08
