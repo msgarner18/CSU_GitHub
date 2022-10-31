@@ -1,0 +1,6 @@
+[submodule "CS435-PA3"]
+	path = CS435-PA3
+	url = https://github.com/msgarner18/CS435-PA3
+[submodule "CS435-Term-Project"]
+	path = CS435-Term-Project
+	url = https://github.com/msgarner18/CS435-Term-Project
