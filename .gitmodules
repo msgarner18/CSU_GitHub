@@ -4,3 +4,6 @@
 [submodule "CS435-Term-Project"]
 	path = CS435-Term-Project
 	url = https://github.com/msgarner18/CS435-Term-Project
+[submodule "g08"]
+	path = g08
+	url = https://github.com/CSU-CS-414-Fall-2022/g08
