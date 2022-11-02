@@ -1,0 +1,50 @@
+#test_heapify
+Heapify length 1: True
+Heapify two out of order: True
+Heapify two in order: True
+A:  [5, 4, 3, 2, 1]
+Heapify 1: True
+Heapify 0: True
+#test_build_heap
+buildHeap(shuffled_list(5, 5)) is a min heap:  True
+buildHeap(shuffled_list(10, 10)) is a min heap:  True
+buildHeap(shuffled_list(15, 15)) is a min heap:  True
+buildHeap(shuffled_list(20, 20)) is a min heap:  True
+buildHeap(shuffled_list(25, 25)) is a min heap:  True
+buildHeap(shuffled_list(30, 30)) is a min heap:  True
+buildHeap(shuffled_list(35, 35)) is a min heap:  True
+buildHeap(shuffled_list(40, 40)) is a min heap:  True
+#test_insert_extract
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+Correctly extracted min: True, maintained heap property: True
+#test_counts:
+Counts for list of len: 400
+buildHeap heapify calls within 30% of expected number of calls: True
+heapExtractMin heapify calls within 30% of expected number of calls: True
+heapInsert swap calls within 30% of expected number of calls: True
+Counts for list of len: 10000
+buildHeap heapify calls within 30% of expected number of calls: True
+heapExtractMin heapify calls within 30% of expected number of calls: True
+heapInsert swap calls within 30% of expected number of calls: True
+Counts for list of len: 100000
+buildHeap heapify calls within 30% of expected number of calls: True
+heapExtractMin heapify calls within 30% of expected number of calls: True
+heapInsert swap calls within 30% of expected number of calls: True

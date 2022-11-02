@@ -1,0 +1,15 @@
+init 3
+add Mark 123
+add Erica 124
+list
+search erica
+get erica
+label 123
+count
+reset
+add Paul 125
+add Jessica 126
+list
+order HASH
+order NAME
+order ADDR

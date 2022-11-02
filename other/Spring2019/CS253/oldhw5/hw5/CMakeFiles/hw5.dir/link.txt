@@ -1,0 +1,2 @@
+/bin/ar qc libhw5.a  CMakeFiles/hw5.dir/Enemy.cc.o CMakeFiles/hw5.dir/Gallery.cc.o
+/bin/ranlib libhw5.a

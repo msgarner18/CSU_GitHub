@@ -1,0 +1,29 @@
+dfbf.py
+BFS
+Input graph: nodeName (color, [adj list]) dictionary 
+a ('white', ['b', 'c', 'd'])
+b ('white', [])
+c ('white', ['d'])
+d ('white', ['e', 'f'])
+e ('white', ['a'])
+f ('white', ['g'])
+g ('white', ['f'])
+Root node: a
+BFS queue: (node name, distance) pairs
+[('a', 0), ('b', 1), ('c', 1), ('d', 1), ('e', 2), ('f', 2), ('g', 3)]
+END BFS
+
+DFS
+Input graph: nodeName (color, [adj list]) dictionary 
+a ('white', ['b', 'c', 'd'])
+b ('white', [])
+c ('white', ['d'])
+d ('white', ['e', 'f'])
+e ('white', ['a'])
+f ('white', ['g'])
+g ('white', ['f'])
+Root node a
+DFS from root visited:
+['a', 'b', 'c', 'd', 'e', 'f', 'g']
+graph with root a is cyclic
+END DFS
