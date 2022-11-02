@@ -1,0 +1,9 @@
+Here are the instructions to run my demo in order to see for yourself how the server is vulnerable to being crashed via a buffer overflow attack:
+
+1. Open 2 seperate command prompts.
+2. On your first command prompt, go to your fhttpd directory and run the command "sudo make" or "make"
+3. Then, got to your server directory and run "./webserver 5000"
+This will start your server on port 5000.
+4. On your second command prompt, go to where my exploit1.sh and payload1 files are stored.
+5. run the command "bash exploit1.sh"
+6. Go back to your first command prompt. It should show that the server has crashed due to a segmentation fault.

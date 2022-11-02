@@ -1,0 +1,4 @@
+/s/bach/e/under/ms675199/CS253/persProjs/animate/CMakeFiles/rebuild_cache.dir
+/s/bach/e/under/ms675199/CS253/persProjs/animate/CMakeFiles/edit_cache.dir
+/s/bach/e/under/ms675199/CS253/persProjs/animate/CMakeFiles/animate.dir
+/s/bach/e/under/ms675199/CS253/persProjs/animate/CMakeFiles/animate.tar.dir
