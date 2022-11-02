@@ -1,1 +1,0 @@
-Homework 6 isn't on remote! It is on your physical computer in Fall2021/cs 370 folder. This assignment has to do with docker and so you must use your physical computer!

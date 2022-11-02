@@ -1,4 +1,0 @@
-/s/bach/e/under/ms675199/CS253/hw0/CMakeFiles/edit_cache.dir
-/s/bach/e/under/ms675199/CS253/hw0/CMakeFiles/rebuild_cache.dir
-/s/bach/e/under/ms675199/CS253/hw0/CMakeFiles/hw0.dir
-/s/bach/e/under/ms675199/CS253/hw0/CMakeFiles/hw0.tar.dir

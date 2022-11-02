@@ -1,4 +1,0 @@
-/s/bach/e/under/ms675199/CS253/persProjs/calculator/CMakeFiles/rebuild_cache.dir
-/s/bach/e/under/ms675199/CS253/persProjs/calculator/CMakeFiles/edit_cache.dir
-/s/bach/e/under/ms675199/CS253/persProjs/calculator/CMakeFiles/calculator.dir
-/s/bach/e/under/ms675199/CS253/persProjs/calculator/CMakeFiles/calculator.tar.dir

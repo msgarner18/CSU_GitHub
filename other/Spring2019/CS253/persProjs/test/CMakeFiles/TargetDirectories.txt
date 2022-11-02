@@ -1,4 +1,0 @@
-/s/bach/e/under/ms675199/CS253/persProjs/test/CMakeFiles/rebuild_cache.dir
-/s/bach/e/under/ms675199/CS253/persProjs/test/CMakeFiles/test.dir
-/s/bach/e/under/ms675199/CS253/persProjs/test/CMakeFiles/edit_cache.dir
-/s/bach/e/under/ms675199/CS253/persProjs/test/CMakeFiles/test.tar.dir

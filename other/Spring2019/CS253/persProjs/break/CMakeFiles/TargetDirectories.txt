@@ -1,4 +1,0 @@
-/s/bach/e/under/ms675199/CS253/persProjs/break/CMakeFiles/edit_cache.dir
-/s/bach/e/under/ms675199/CS253/persProjs/break/CMakeFiles/break.dir
-/s/bach/e/under/ms675199/CS253/persProjs/break/CMakeFiles/rebuild_cache.dir
-/s/bach/e/under/ms675199/CS253/persProjs/break/CMakeFiles/break.tar.dir
