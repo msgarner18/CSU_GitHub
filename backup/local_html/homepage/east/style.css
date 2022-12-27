@@ -1,0 +1,114 @@
+/*content*/
+body {
+  background-color: #2703a6;
+  padding: 0px;
+  margin: 0px;
+}
+
+.container {
+  background-color: #f2b705;
+  border-style: solid;
+  border-width: 1px;
+  width: 800px;
+  margin: 10px auto;
+  padding: 0px;
+}
+
+.content {
+  background-color: #f2b705;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+nav li {
+  display: inline-block;
+  margin: 0px;
+  padding: 10px;
+}
+
+nav {
+  background-color: #141259;
+  padding: 0px;
+  margin: 0px;
+}
+a {
+  text-decoration: none;
+  color: #200f8c;
+}
+nav a {
+  text-decoration: none;
+  color: #f29f05;
+}
+a:hover {
+  background-color: #2703a6;
+  color: #f2b705;
+}
+
+/* #board-games-banner {
+  margin: 0px;
+  padding: px;
+  width: 800px;
+} */
+.robotics-banner {
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+}
+.vex-logo {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  height: 139.5px;
+}
+
+#piano-banner {
+  margin: 0px;
+  padding: px;
+  width: 800px;
+}
+
+/*color palette*/
+#palette {
+  margin: 0px;
+  padding: 0px;
+}
+#palette ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+.colors {
+  width: auto;
+  height: 100px;
+  margin: 0px;
+  padding: 0px;
+  border-width: 2px 1px;
+  border-style: solid;
+}
+#color1 {
+  background-color: #2703a6;
+}
+#color2 {
+  background-color: #200f8c;
+}
+#color3 {
+  background-color: #141259;
+}
+#color4 {
+  background-color: #f2b705;
+}
+#color5 {
+  background-color: #f29f05;
+}
+
+footer {
+  background-color: #141259;
+  text-align: center;
+  color: #f29f05;
+}

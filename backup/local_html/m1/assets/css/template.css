@@ -1,0 +1,155 @@
+#wrapper {
+    max-width: 1000px;
+    margin: auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 100px;
+}
+
+body {
+    background-color: #c7ddcc !important;
+}
+
+body > * {
+    color: #333 !important;
+    background-color: #c7ddcc !important;
+}
+
+.jumbotron{
+    background-color: #dae6dd !important;
+    padding: 48px 20px !important;
+    border-radius: 5px;
+}
+
+.jumbo-decoration {
+    background-color: #77857b;
+    padding: 10px 10px 10px 10px;
+    color: #e1ece4;
+    border-radius: 3px;
+}
+
+.at-a-glance {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.at-a-glance p {
+    text-align: justify;
+}
+
+#aboutUsPicture {
+    padding-left: 15px;
+    margin-right: 10px;
+}
+
+#aboutUsText {
+    padding-right: 10px;
+    text-align: justify;
+}
+
+hr {
+    border-color: #77857b !important;
+}
+
+#aboutUsLink {
+    color: rgb(177, 145, 105) !important;
+}
+
+#aboutUsLink:hover {
+    text-decoration: none;
+    color: #77857b !important;
+}
+
+.upper_table {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    box-sizing: border-box;
+    /* border: 1px solid #77857b; */
+    width: 70%;
+}
+
+.upper_table > tbody > tr, td {
+    /* background-color: red; */
+    border: 1px solid #77857b;
+    width: 100%;
+}
+
+.right_col {
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left_col {
+    width: 0%;
+}
+
+.upper_table > tbody > tr > td > select {
+    background-color: #e1ece4 !important;
+}
+
+.lower_table {
+    box-sizing: border-box;
+    width: 70%;
+}
+
+.lower_table > tbody  tr th, td {
+    text-align: center;
+    width: auto;
+}
+
+.lower_table > tbody > tr > th:first-child{
+    text-align: right;
+    width: 0px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.btn-default {
+    background-color:#e1ece4 !important;
+    color: #333 !important;
+}
+
+.btn-default > a {
+    color:#333 !important;
+}
+
+.btn-default > a:hover {
+    text-decoration: none;
+    color:#333 !important;
+}
+
+#rows {
+    background-color: #dae6dd !important;
+    color: #333 !important;
+}
+
+#size {
+    background-color: #dae6dd !important;
+    color: #333 !important;
+}
+
+#color_select_error {
+    display:none;
+    color: red;
+}
+
+#firstFormButton {
+    background-color: #dae6dd !important;
+    color:#333 !important;
+}
+
+.noprint { 
+    display: inline; 
+}
+.noscreen { 
+    display: none; 
+}
